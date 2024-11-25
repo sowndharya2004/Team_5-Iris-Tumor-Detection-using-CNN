@@ -1,0 +1,93 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<style>
+    .navbar {
+        width: 100%;
+        background-color: rgba(9, 56, 126, 0.5); ;
+        overflow: hidden;
+        padding: 10px 0;
+    }
+
+    /* Navbar links */
+    .navbar a {
+        float: right;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Navbar links hover effect */
+    .navbar a:hover {
+        background-color: yellow;
+        color: black;
+    }
+    
+
+    /* Styling for the centered container box */
+    .upload-container {
+        width: 400px;
+        color:white;
+        padding: 20px;
+        background-color:rgba(9, 56, 126, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 480px; /* Adjust this to move the box horizontally from the left edge */
+        transform: translateY(-50%);
+        top: 50%; /* Center the box vertically */
+        outline: 5px double yellow;
+    }
+
+    /* Header styling */
+    .upload-container h2 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align:center;
+    }
+
+    /* Button styling */
+    .upload-container button {
+        background-color: #00aaff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 10px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+        margin-top:10px;
+    }
+
+    /* Button hover and active effects */
+    .upload-container button:hover {
+        background-color: yellow;
+        color:black;
+        transform: scale(1.05);
+    }
+
+    
+</style>
+<div class="navbar">
+    <a href="{% url 'logout' %}">LOGOUT</a>
+    
+</div>
+<div class="upload-container">
+    <h2>Upload Image for Tumor Detection</h2>
+    <br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit">Detect Tumor</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Brain tumor detector{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'detection/css/styles.css' %}">
+</head>
+<style>
+    header h1{
+        background-color: rgba(9, 56, 126, 0.5);
+        color:white;
+        padding: 1em;
+        outline:1px solid yellow;
+        text-align: center;
+        font-weight: bolder;
+        margin-top:1px;
+    }
+    #myVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1; /* Sends the video to the back */
+    }
+    .dialog-box {
+        width: 400px;
+        padding: 20px;
+        background-color:rgba(9, 56, 126, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 100px; /* Adjust this to move the box horizontally from the left edge */
+        transform: translateY(-50%);
+        top: 50%; /* Center the box vertically */
+        outline: 5px double yellow;
+    }
+
+    /* Heading styling */
+    .dialog-box h1,h4 {
+        color: yellow;
+        margin-top: 20px;
+        
+        text-align:center;
+    }
+
+    /* Link button styling */
+    .dialog-box a {
+        margin-top:0;
+        display: inline-block;
+        width: 100%;
+        padding: 10px 0;
+        margin: 10px 0;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        
+        transition: background-color 0.3s;
+        text-align:center;
+    }
+
+    /* Login button color */
+    .dialog-box a.login {
+        background-color: yellow;
+        outline:black;
+    }
+
+    /* Register button color */
+    .dialog-box a.register {
+        background-color: black;
+    }
+
+    /* Hover effect for buttons */
+    .dialog-box a:hover {
+        background-color: yellow;
+        color:black;
+        
+    }
+    .right-centered-box {
+        width: 500px;
+        margin-top:20px;
+        padding: 20px;
+        background-color:rgba(137, 207, 240, .25);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        right: 150px; /* Distance from the right edge */
+        top: 50%;
+        transform: translateY(-50%); /* Center the box vertically */
+        outline: 3px solid #98d7c2;
+        
+    }
+
+    /* Heading styling */
+    .right-centered-box h3 {
+        color: #333;
+        font-size: 25px;
+        margin-top:10px;
+        margin-bottom: 20px;
+        text-align: center;
+        color:#98d7c2;
+        border-bottom-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    /* Content styling */
+    .right-centered-box p {
+        margin-top:0;
+        color: #3cacae;
+        font-size: 18px;
+        line-height: 2;
+        text-align: center;
+        margin-bottom:20px;
+        border-bottom-left-radius: 25px;
+    }
+    .right-centered-box :hover {
+        background-color: #3cacae;
+        color:white;
+        
+    }
+</style>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'detection/videos/iris.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    <header> <h1><i><b>IRIS TUMOR DETECTOR</b></i></h1></header>
+
+        
+        <div class="dialog-box">
+            <h1>Welcome</h1>
+        <br>
+            {% if user.is_authenticated %}
+                <a href="{% url 'upload_image' %}">Upload Image</a> |
+                <a href="{% url 'logout' %}"> Logout</a>
+            {% else %}
+                <h4>Already have an account ?</h4>
+                <a href="{% url 'login' %}"> LOGIN</a>
+                <h4>New User ?</h4>
+                <a href="{% url 'register' %}"> REGISTER</a> |
+            {% endif %}
+        </div>
+        <div class="right-centered-box">
+            <h3>Iris Tumor Information</h3>
+            <p>
+                Iris tumors are abnormal growths located on the iris of the eye.<br>
+                 These tumors can be benign or malignant.
+                Early detection and monitoring are essential for effective treatment and care.<br>
+                Using CNNs for iris tumor detection aims to enhance diagnostic accuracy, support early intervention, and
+                streamline the analysis of iris images, ultimately contributing to more effective patient care.
+            </p>
+        </div>
+    
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    
+</body>
+</html>

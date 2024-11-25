@@ -1,0 +1,88 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<style>
+    /* Body styling for centering the result box */
+   
+    .navbar {
+        width: 100%;
+        background-color: rgba(9, 56, 126, 0.5); ;
+        overflow: hidden;
+        padding: 10px 0;
+    }
+
+    /* Navbar links */
+    .navbar a {
+        float: right;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Navbar links hover effect */
+    .navbar a:hover {
+        background-color: yellow;
+        color: black;
+    }
+
+    /* Styling for the centered result box */
+    .result-container {
+        width: 400px;
+        color:white;
+        padding: 20px;
+        background-color:rgba(9, 56, 126, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 480px; /* Adjust this to move the box horizontally from the left edge */
+        transform: translateY(-50%);
+        top: 50%; /* Center the box vertically */
+        outline: 5px double yellow;
+    }
+
+    /* Styling for the detection result */
+    .result-container p {
+        color: yellow;
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align:center;
+    }
+
+    /* Link styling for 'Try another image' */
+    .result-container a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #00aaff; /* Cyan background */
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-left:90px;
+    }
+
+    /* Link hover and active effects */
+    .result-container a:hover {
+        background-color: yellow;
+        color:black;
+        transform: scale(1.05);
+    }
+
+</style>
+<div class="navbar">
+    <a href="{% url 'logout' %}">LOGOUT</a>
+    
+</div>
+<div class="result-container">
+    <h2>Detection Result</h2>
+    <br>
+    <p>{{ result }}</p>
+    <br>
+    <a href="{% url 'upload_image' %}">Try another image</a>
+</div>
+
+{% endblock %}

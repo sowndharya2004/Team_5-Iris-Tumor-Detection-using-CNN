@@ -1,0 +1,77 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<style>
+    
+
+    /* Center the login container on the page with semi-transparent background */
+    .login-container {
+        width: 350px;
+        padding: 20px;
+        background-color:rgba(9, 56, 126, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 500px; /* Adjust this to move the box horizontally from the left edge */
+        transform: translateY(-50%);
+        top: 50%; /* Center the box vertically */
+        outline: 5px double yellow;
+        color:white;
+    }
+
+    /* Style for the heading */
+    .login-container h2 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 26px;
+        font-weight: bold;
+        text-align:center;
+    }
+
+    /* Style for form inputs */
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 12px 0; /* Space between inputs */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    /* Styling for the submit button */
+    .submit-button {
+        background-color: #4334c9;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+        margin-top: 15px;
+        
+    }
+
+    /* Hover and active effects for button */
+    .submit-button:hover {
+        background-color: yellow;
+        color:black;
+    }
+
+    
+</style>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Login</button>
+    </form>
+</div>
+
+{% endblock %}

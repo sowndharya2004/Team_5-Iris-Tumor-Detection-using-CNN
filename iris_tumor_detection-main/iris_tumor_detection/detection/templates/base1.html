@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Brain tumor detector{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'detection/css/styles.css' %}">
+</head>
+<style>
+    header h1{
+        background-color: rgba(9, 56, 126, 0.5);
+        color:white;
+        padding: 1em;
+        outline:1px solid yellow;
+        text-align: center;
+        font-weight: bolder;
+        margin-top:1px;
+    }
+    #myVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1; /* Sends the video to the back */
+    }
+</style>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="{% static 'detection/videos/iris.mp4' %}" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    
+    <header> <h1><i><b>IRIS TUMOR DETECTOR</b></i></h1></header>
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    
+</body>
+</html>

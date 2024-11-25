@@ -1,0 +1,103 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<style>
+    
+
+    /* Center the register container with modern styling */
+    .register-container {
+        width: 700px;
+        padding: 10px;
+        background-color:rgba(9, 56, 126, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        left: 350px; /* Adjust this to move the box horizontally from the left edge */
+        transform: translateY(-50%);
+        top: 50%; /* Center the box vertically */
+        outline: 5px double yellow;
+        color:white;
+        margin-top:45px;
+    }
+
+    /* Heading styling */
+    .register-container h2 {
+        color: white; /* Bright cyan color */
+        margin-bottom: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align:center;
+
+    }
+
+    /* Label styling */
+    .register-form label {
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+        color: yellow; /* Light gray for contrast */
+        font-weight: 600;
+        font-size: 0.9em;
+    }
+
+    /* Input styling */
+    .register-form input[type="text"],
+    .register-form input[type="email"],
+    .register-form input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #007BFF;
+        border-radius: 8px;
+        font-size: 15px;
+        background-color: #333333; /* Darker background for inputs */
+        color: #ffffff;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+    /* Focus effect for inputs */
+    .register-form input[type="text"]:focus,
+    .register-form input[type="email"]:focus,
+    .register-form input[type="password"]:focus {
+        border-color: #00aaff; /* Highlight color on focus */
+        outline: none;
+    }
+
+    /* Styling for the submit button */
+    .submit-button {
+        background-color: #00aaff;
+        color: #ffffff;
+        padding: 10px;
+        border: none;
+        border-radius: 15px;
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        width: 100%;
+        margin-top: 15px;
+        box-shadow: 0 4px 10px rgba(0, 170, 255, 0.2);
+       
+    }
+
+    /* Hover and active effects for button */
+    .submit-button:hover {
+        background-color: yellow;
+        color:black;
+    }
+
+   
+</style>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form method="POST" class="register-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Register</button>
+    </form>
+</div>
+
+{% endblock %}
